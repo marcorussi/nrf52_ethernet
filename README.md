@@ -1,7 +1,7 @@
 # nrf52_ethernet
 Adding a KSZ8851 Ethernet interface to nRF52840 DK board.
 This experiment aims to show how to get an IP interface over Ethernet on a nRF52840 chip. IP address is obtained via DHCP and an SNTP request follows.
-The Ethernet port is meant to be connected to a swith and a laptop works as DHCP server and gateway. An LED on the DK is toggled for debug purpose.
+The Ethernet port is meant to be connected to a switch and a laptop works as DHCP server and gateway. The board responds to ping requests to *nrf52_eth.local*. An LED on the DK is toggled for debug purpose.
 This software depends on Nordic nRF5_SDK_16.0.0 code. The used lwip stack is not the provided one with the SDK but another release included in this peoject.
 
 Connect an Atmel Ethernet1 Xplained Pro board to a nRF52840 DK following the pin map below: 
