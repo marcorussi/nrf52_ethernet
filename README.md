@@ -39,3 +39,7 @@ This is just a quick experiment, so bear in mind that some issues could be prese
 * the KSZ8851 Ethernet chip must be unpowered and powered up again to keep receiving messages after a while if incoming  messages are not managed during a debug session (MCU not running). Internal message queue gets probably full and so it should be cleared.
 
 
+**License**
+
+Check files for license information
+
