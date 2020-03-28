@@ -1,0 +1,10 @@
+/_build/
+/Debug/
+/Release/
+/Test/
+.cproject
+.project
+.scannerwork
+.settings
+cscope.out
+sonar-project.properties
