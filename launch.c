@@ -86,6 +86,7 @@ void LAUNCH_go( void )
 }
 
 
+/* Function to create a task */
 static bool createTask( uint8_t id, TaskFunction_t fn )
 {
   bool ret = false;
@@ -119,6 +120,7 @@ static void ledTask( void * arg )
   uint32_t period_ms = (uint32_t)arg;
   nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
 
+  /* Init LED pin */
   if (true != nrf_drv_gpiote_is_init())
   {
     APP_ERROR_CHECK(nrf_drv_gpiote_init());
@@ -126,11 +128,14 @@ static void ledTask( void * arg )
   APP_ERROR_CHECK(nrf_drv_gpiote_out_init(TEST_LED_PIN_NUM, &out_config));
   nrfx_gpiote_out_set(TEST_LED_PIN_NUM);
 
+  /* Init timer and set callback function */
   (void)TIM_init(TIM_1, 150, ledTimCb);
 
   while (true)
   {
+    /* Turn LED on */
     nrfx_gpiote_out_clear(TEST_LED_PIN_NUM);
+    /* Start timer */
     (void)TIM_start(TIM_1);
 
     vTaskDelay(pdMS_TO_TICKS(period_ms));
@@ -142,6 +147,7 @@ static void ledTask( void * arg )
 
 static void ledTimCb( void )
 {
+  /* Turn LED off */
   nrfx_gpiote_out_set(TEST_LED_PIN_NUM);
 }
 

@@ -182,7 +182,7 @@ static void inPinHandler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
   (void)pin;
   (void)action;
 
-  /* Set the INTN flag */
+  /* Set the interrupt flag */
   device.int_flag = 1;
 }
 

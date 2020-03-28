@@ -31,6 +31,7 @@
 #include "tim.h"
 
 
+/* Structure to store timer info */
 typedef struct
 {
   TimerHandle_t handle;
@@ -40,6 +41,7 @@ typedef struct
 } timer_info_st;
 
 
+/* Timers info array */
 static timer_info_st timers[TIM_NUM_OF_TIMERS] =
 {
   {
@@ -66,6 +68,7 @@ static timer_info_st timers[TIM_NUM_OF_TIMERS] =
 static void timer_callback (TimerHandle_t tim);
 
 
+/* Init a timer ID. Timeout in ms and callback function */
 bool TIM_init( uint8_t id, uint16_t ms, TIM_callback_fn cb )
 {
   bool ret = false;
@@ -81,6 +84,7 @@ bool TIM_init( uint8_t id, uint16_t ms, TIM_callback_fn cb )
 
     if (NULL != handle)
     {
+      /* Store timer info */
       timers[id].handle = handle;
       timers[id].ms = ms;
       timers[id].cb = cb;
@@ -93,6 +97,7 @@ bool TIM_init( uint8_t id, uint16_t ms, TIM_callback_fn cb )
 }
 
 
+/* Start a timer ID */
 bool TIM_start( uint8_t id )
 {
   bool ret = false;
@@ -109,8 +114,11 @@ bool TIM_start( uint8_t id )
 }
 
 
+/* Common timer callback function */
 static void timer_callback (TimerHandle_t tim)
 {
+  /* Check which timer has elapsed and call related
+   * configured callback function */
   uint8_t id = (uint8_t)pvTimerGetTimerID( tim );
 
   if ((id < TIM_NUM_OF_TIMERS)

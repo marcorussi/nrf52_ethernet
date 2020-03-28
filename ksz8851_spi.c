@@ -153,7 +153,7 @@ uint16_t ksz8851_regRead( uint16_t reg )
     cmd |= (0x3 << 10);
   }
 
-  /* Add command read code. */
+  /* Prepare command to send */
   cmd |= CMD_READ;
   outbuf[0] = cmd >> 8;
   outbuf[1] = cmd & 0xff;
@@ -161,7 +161,8 @@ uint16_t ksz8851_regRead( uint16_t reg )
   outbuf[3] = 0xff;
 
   CLEAR_SPI_CS();
-  /* Perform blocking SPI transfer. Discard function returned value! TODO: handle it? */
+  /* Perform blocking SPI transfer. Discard function returned value!
+   * TODO: handle it? */
   (void)nrf_drv_spi_transfer(&spi, (uint8_t*)outbuf, 4, (uint8_t *)inbuf, 4);
   SET_SPI_CS();
 
@@ -254,15 +255,13 @@ bool ksz8851_init(void)
   /* Initialize the SPI interface */
   if (NRF_SUCCESS == nrf_drv_spi_init(&spi, &spi_config, NULL, NULL))
   {
-    /* Reset the Micrel in a proper state */
+    /* Reset the chip in a proper state */
     do
     {
       /* Reset pulse */
       nrfx_gpiote_out_clear(KSZ8851_RESET_PIN_NUM);
-      //vTaskDelay(50);
       nrf_delay_ms(50);
       nrfx_gpiote_out_set(KSZ8851_RESET_PIN_NUM);
-      //vTaskDelay(50);
       nrf_delay_ms(50);
 
       /* Read chip ID. */

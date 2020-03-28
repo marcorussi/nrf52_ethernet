@@ -27,6 +27,7 @@
 #define __TIM_H
 
 
+/* Timers IDs */
 typedef enum
 {
   TIM_1,
@@ -36,6 +37,7 @@ typedef enum
 } TIM_ids;
 
 
+/* Callback function prototype */
 typedef void (*TIM_callback_fn) (void);
 
 
