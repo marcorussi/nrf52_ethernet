@@ -22,7 +22,7 @@ Install SEGGER JLink and nrfjprog. Get Nordic nRF5_SDK_16.0.0 library. Clone thi
 
     $ git clone https://github.com/marcorussi/nrf52_ethernet.git
 
-Modify the Makefile according to your environment paths and preferences.
+***Modify the Makefile according to your environment paths and preferences.***
 
 
 **Flash**
