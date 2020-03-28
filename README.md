@@ -10,7 +10,7 @@ Connect an Atmel Ethernet1 Xplained Pro board to a nRF52840 DK following the pin
 | SPI_MISO | P0.13 | 17 |
 | SPI_SCK | P0.14 | 18 |
 | INTRN | P0.05 | 9 |
-| nRST | p0.01 | 6 |
+| nRST | P0.01 | 6 |
 
 
 **Install**
